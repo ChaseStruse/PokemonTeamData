@@ -45,62 +45,98 @@ namespace PokemonTeamData.Repository
 
         public int ParseIdToInt(JToken pokemonJToken)
         {
-            return (int)pokemonJToken["id"];
+            try
+            {
+                return (int)pokemonJToken["id"];
+            }
+            catch
+            {
+                throw new Exception("Could not find ID");
+            }
         }
 
         public List<Ability> ParseAbilitiesToList(JToken abilities)
         {
             var abilitiesList = new List<Ability>();
 
-            foreach (var unparsedAbility in abilities)
+            try
             {
-                var abilityToAdd = new Ability
+                foreach (var unparsedAbility in abilities)
                 {
-                    Name = unparsedAbility["ability"]["name"].ToString(),
-                    URL = unparsedAbility["ability"]["url"].ToString()
-                };
-                abilitiesList.Add(abilityToAdd);
+                    var abilityToAdd = new Ability
+                    {
+                        Name = unparsedAbility["ability"]["name"].ToString(),
+                        URL = unparsedAbility["ability"]["url"].ToString()
+                    };
+                    abilitiesList.Add(abilityToAdd);
+                }
+                return (abilitiesList);
             }
-            return (abilitiesList);
+            catch(Exception e)
+            {
+                throw new Exception("Unable to parse through abilities received error: " + e);
+            }
         }
 
         public List<Statistic> ParseStatisticsToList(JToken statistics)
         {
             var statisticsList = new List<Statistic>();
 
-            foreach(var unparsedStatistic in statistics)
+            try
             {
-                var statisticToAdd = new Statistic
+                foreach (var unparsedStatistic in statistics)
                 {
-                    Name = unparsedStatistic["stat"]["name"].ToString(),
-                    BaseValue = (int)unparsedStatistic["base_stat"]
-                };
-                statisticsList.Add(statisticToAdd);
-            }
+                    var statisticToAdd = new Statistic
+                    {
+                        Name = unparsedStatistic["stat"]["name"].ToString(),
+                        BaseValue = (int)unparsedStatistic["base_stat"]
+                    };
+                    statisticsList.Add(statisticToAdd);
+                }
 
-            return statisticsList;
+                return statisticsList;
+            }
+            catch(Exception e)
+            {
+                throw new Exception("Unable to parse through statistics received error: " + e);
+            }
         }
 
         public List<Models.Type> ParseTypesToList(JToken types)
         {
             var typeList = new List<Models.Type>();
 
-            foreach (var unparsedTypes in types)
+            try
             {
-                var typeToAdd = new Models.Type
+                foreach (var unparsedTypes in types)
                 {
-                    Name = unparsedTypes["type"]["name"].ToString(),
-                    URL = unparsedTypes["type"]["url"].ToString()
-                };
-                typeList.Add(typeToAdd);
-            }
+                    var typeToAdd = new Models.Type
+                    {
+                        Name = unparsedTypes["type"]["name"].ToString(),
+                        URL = unparsedTypes["type"]["url"].ToString()
+                    };
+                    typeList.Add(typeToAdd);
+                }
 
-            return typeList;
+                return typeList;
+
+            }
+            catch(Exception e)
+            {
+                throw new Exception("Unable to parse through types received error: " + e);
+            }
         }
 
         public string ParseNameToString(JToken pokemonJToken)
         {
-            return pokemonJToken["name"].ToString();
+            try
+            {
+                return pokemonJToken["name"].ToString();
+            }
+            catch
+            {
+                throw new Exception("Unable to parse name");
+            }
         }
     }
 }

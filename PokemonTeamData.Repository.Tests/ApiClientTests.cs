@@ -16,6 +16,7 @@ namespace PokemonTeamData.Repository.Tests
         {
             _sut = new ApiClient();
         }
+
         [Fact]
         public async Task GivenValidUri_GetPokemon_SetsValuesCorrectlyAsync()
         {
