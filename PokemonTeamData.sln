@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonTeamData.Repository"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonTeamData.Repository.Tests", "PokemonTeamData.Repository.Tests\PokemonTeamData.Repository.Tests.csproj", "{12EC3060-C9EA-48C2-8FBE-02DBBD933C56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonTeamData.Service.Tests", "PokemonTeamData.Service.Tests\PokemonTeamData.Service.Tests.csproj", "{1CD6FD4D-225F-4D72-8C0D-75F688C3AC66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonTeamData.Service", "PokemonTeamData.Service\PokemonTeamData.Service.csproj", "{7A56C28B-9E3D-494D-9A1C-FA006476BC21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{12EC3060-C9EA-48C2-8FBE-02DBBD933C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12EC3060-C9EA-48C2-8FBE-02DBBD933C56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12EC3060-C9EA-48C2-8FBE-02DBBD933C56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CD6FD4D-225F-4D72-8C0D-75F688C3AC66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CD6FD4D-225F-4D72-8C0D-75F688C3AC66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CD6FD4D-225F-4D72-8C0D-75F688C3AC66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CD6FD4D-225F-4D72-8C0D-75F688C3AC66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A56C28B-9E3D-494D-9A1C-FA006476BC21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A56C28B-9E3D-494D-9A1C-FA006476BC21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A56C28B-9E3D-494D-9A1C-FA006476BC21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A56C28B-9E3D-494D-9A1C-FA006476BC21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
