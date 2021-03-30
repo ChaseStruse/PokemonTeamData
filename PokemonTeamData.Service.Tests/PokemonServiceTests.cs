@@ -98,5 +98,13 @@ namespace PokemonTeamData.Service.Tests
 
             actual.Should().BeEquivalentTo(expected);
         }
+
+        [Fact]
+        public async Task GivenUriThatDoesNotExist_GetPokemonReturnsNull()
+        {
+            Uri uri = new("https://pokeapi.co/api/v2/pokemon/NotARealPokemon");
+            var actual = await _sut.GetPokemon(uri);
+            actual.Should().BeNull();
+        }
     }
 }
