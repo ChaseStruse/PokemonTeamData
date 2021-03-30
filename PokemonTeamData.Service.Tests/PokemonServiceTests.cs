@@ -45,9 +45,19 @@ namespace PokemonTeamData.Service.Tests
         }
 
         [Fact]
-        public void GivenListOfSixPokemon_CreateTeamCorrectlyReturnsValues()
+        public void GivenListOfSixPokemon_AddPokemonToTeamReturnsCorrectValues()
         {
+            var team = new Team();
+            var expected = new Team();
 
+            for(int i = 0; i < 6; i++)
+            {
+                team = _sut.AddPokemonToTeam(team, CreateTestPokemon_Charmander());
+                expected.Pokemon.Add(CreateTestPokemon_Charmander());
+            }
+            team.Pokemon.Count.Should().BeLessOrEqualTo(6);
+            team.Pokemon.Should().BeEquivalentTo(expected.Pokemon);
+                        
         }
 
         private Pokemon CreateTestPokemon_Charmander()
