@@ -22,7 +22,62 @@ namespace PokemonTeamData.Service.Tests
             var uri = _sut.UriBuilder("charmander");
             var actual = await _sut.GetPokemon(uri);
 
-            var expectedAbilities = new List<Ability>()
+            var expected = CreateTestPokemon_Charmander();
+
+            actual.Should().BeEquivalentTo(expected);
+        }
+
+        [Fact]
+        public void GivenValidPokemonName_UriBuilder_CreatesAndReturnsValidUri()
+        {
+            Uri expected = new Uri("https://pokeapi.co/api/v2/pokemon/charmander");
+            var actual = _sut.UriBuilder("charmander");
+
+            actual.Should().BeEquivalentTo(expected);
+        }
+
+        [Fact]
+        public async Task GivenUriThatDoesNotExist_GetPokemonReturnsNull()
+        {
+            Uri uri = new("https://pokeapi.co/api/v2/pokemon/NotARealPokemon");
+            var actual = await _sut.GetPokemon(uri);
+            actual.Should().BeNull();
+        }
+
+        [Fact]
+        public void GivenListOfSixPokemon_AddPokemonToTeamReturnsCorrectValues()
+        {
+            var team = new Team();
+            var expected = new Team();
+
+            for(int i = 0; i < 6; i++)
+            {
+                team = _sut.AddPokemonToTeam(team, CreateTestPokemon_Charmander());
+                expected.Pokemon.Add(CreateTestPokemon_Charmander());
+            }
+            team.Pokemon.Count.Should().BeLessOrEqualTo(6);
+            team.Pokemon.Should().BeEquivalentTo(expected.Pokemon);              
+        }
+
+        [Fact]
+        public void GivenListOfMoreThenSixPokemon_AddPokemonToTeamDoesNotAllowForMoreThenSix()
+        {
+            var team = new Team();
+            var expected = new Team();
+
+            for (int i = 0; i < 6; i++)
+            {
+                team = _sut.AddPokemonToTeam(team, CreateTestPokemon_Charmander());
+                expected.Pokemon.Add(CreateTestPokemon_Charmander());
+            }
+            team = _sut.AddPokemonToTeam(team, CreateTestPokemon_Charmander());
+            team.Pokemon.Count.Should().BeLessOrEqualTo(6);
+            team.Pokemon.Should().BeEquivalentTo(expected.Pokemon);
+        }
+
+        private Pokemon CreateTestPokemon_Charmander()
+        {
+            var abilities = new List<Ability>()
             {
                 new Ability
                 {
@@ -36,7 +91,7 @@ namespace PokemonTeamData.Service.Tests
                 }
             };
 
-            var expectedTypes = new List<Repository.Models.Type>()
+            var types = new List<Repository.Models.Type>()
             {
                 new Repository.Models.Type
                 {
@@ -45,7 +100,7 @@ namespace PokemonTeamData.Service.Tests
                 }
             };
 
-            var expectedStats = new List<Statistic>()
+            var stats = new List<Statistic>()
             {
                 new Statistic
                 {
@@ -78,33 +133,16 @@ namespace PokemonTeamData.Service.Tests
                     Name = "speed"
                 }
             };
-            var expected = new Pokemon()
+            var charmander = new Pokemon()
             {
                 Id = 4,
                 Name = "charmander",
-                Abilities = expectedAbilities,
-                Types = expectedTypes,
-                Stats = expectedStats
+                Abilities = abilities,
+                Types = types,
+                Stats = stats
             };
 
-            actual.Should().BeEquivalentTo(expected);
-        }
-
-        [Fact]
-        public void GivenValidPokemonName_UriBuilder_CreatesAndReturnsValidUri()
-        {
-            Uri expected = new Uri("https://pokeapi.co/api/v2/pokemon/charmander");
-            var actual = _sut.UriBuilder("charmander");
-
-            actual.Should().BeEquivalentTo(expected);
-        }
-
-        [Fact]
-        public async Task GivenUriThatDoesNotExist_GetPokemonReturnsNull()
-        {
-            Uri uri = new("https://pokeapi.co/api/v2/pokemon/NotARealPokemon");
-            var actual = await _sut.GetPokemon(uri);
-            actual.Should().BeNull();
+            return charmander;
         }
     }
 }
