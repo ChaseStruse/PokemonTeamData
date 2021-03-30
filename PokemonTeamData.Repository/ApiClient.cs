@@ -23,24 +23,32 @@ namespace PokemonTeamData.Repository
 
         public async Task<Pokemon> GetPokemon(Uri uri)
         {
-            string response = await _client.GetStringAsync(uri);
-            JObject joResponse = JObject.Parse(response);
+            try
+            {
+                string response = await _client.GetStringAsync(uri);
+                JObject joResponse = JObject.Parse(response);
 
-            Pokemon pokemon = new();
+                Pokemon pokemon = new();
 
-            pokemon.Id = ParseIdToInt(joResponse);
-            pokemon.Name = ParseNameToString(joResponse);
+                pokemon.Id = ParseIdToInt(joResponse);
+                pokemon.Name = ParseNameToString(joResponse);
 
-            var unparsedAbilities = joResponse["abilities"];
-            pokemon.Abilities = ParseAbilitiesToList(unparsedAbilities);
+                var unparsedAbilities = joResponse["abilities"];
+                pokemon.Abilities = ParseAbilitiesToList(unparsedAbilities);
 
-            var unparsedStats = joResponse["stats"];
-            pokemon.Stats = ParseStatisticsToList(unparsedStats);
+                var unparsedStats = joResponse["stats"];
+                pokemon.Stats = ParseStatisticsToList(unparsedStats);
 
-            var unparsedTypes = joResponse["types"];
-            pokemon.Types = ParseTypesToList(unparsedTypes);
+                var unparsedTypes = joResponse["types"];
+                pokemon.Types = ParseTypesToList(unparsedTypes);
 
-            return pokemon;
+                return pokemon;
+            }
+            catch
+            {
+                return null;
+            }
+            
         }
 
         public int ParseIdToInt(JToken pokemonJToken)

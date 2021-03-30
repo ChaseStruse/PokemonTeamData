@@ -9,6 +9,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PokemonTeamData.Repository\PokemonTeamData.Repository.csproj" />
+    <ProjectReference Include="..\PokemonTeamData.UI\PokemonTeamData.UI.csproj" />
   </ItemGroup>
 </Project>
