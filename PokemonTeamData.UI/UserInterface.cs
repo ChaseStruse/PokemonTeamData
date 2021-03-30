@@ -12,6 +12,9 @@ namespace PokemonTeamData.UI
         Task DisplayGetPokemonMessagePromptsAsync();
         void DisplayPokemonInformation(Pokemon pokemon);
         void DisplayMainMenu();
+        Task<Team> AddPokemonToTeamAsync(Team team);
+        void DisplaySimpleTeamInformation(Team team);
+        void DisplayAdvancedTeamInformation(Team team);
     }
 
     public class UserInterface : IUserInterface
@@ -26,6 +29,7 @@ namespace PokemonTeamData.UI
         public async Task MainProgramLoop()
         {
             var userWantsToExitProgram = false;
+            var userTeam = new Team();
 
             while (!userWantsToExitProgram)
             {
@@ -35,6 +39,18 @@ namespace PokemonTeamData.UI
                 if(userChoice == "1")
                 {
                     await DisplayGetPokemonMessagePromptsAsync();
+                }
+                else if(userChoice == "2")
+                {
+                    userTeam = await AddPokemonToTeamAsync(userTeam);
+                }
+                else if (userChoice == "3")
+                {
+                    DisplaySimpleTeamInformation(userTeam);
+                }
+                else if (userChoice == "4")
+                {
+                    DisplayAdvancedTeamInformation(userTeam);
                 }
                 else if(userChoice == "0")
                 {
@@ -46,6 +62,7 @@ namespace PokemonTeamData.UI
 
         public void DisplayPokemonInformation(Pokemon pokemon)
         {
+            Console.WriteLine("----------------------------------------------");
             Console.WriteLine("Pokemon ID: " + pokemon.Id);
             Console.WriteLine("Pokemon Name: " + pokemon.Name);
             Console.WriteLine("----------------------------------------------");
@@ -70,6 +87,22 @@ namespace PokemonTeamData.UI
             Console.WriteLine("----------------------------------------------");
         }
 
+        public void DisplaySimpleTeamInformation(Team team)
+        {
+            foreach (var pokemon in team.Pokemon)
+            {
+                Console.WriteLine("Pokemon ID: " + pokemon.Id + " Pokemon: " + pokemon.Name);
+            }
+        }
+
+        public void DisplayAdvancedTeamInformation(Team team)
+        {
+            foreach (var pokemon in team.Pokemon)
+            {
+                DisplayPokemonInformation(pokemon);
+                Console.WriteLine();
+            }
+        }
         public async Task<Pokemon> GetPokemon(string pokemonName)
         {
             try
@@ -90,6 +123,12 @@ namespace PokemonTeamData.UI
             Console.WriteLine("|   Welcome to Pokemon Team Data Main Menu   |");
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("|   1 - View stats of a specific pokemon     |");
+            Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("|   2 - Add pokemon to your team             |");
+            Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("|   3 - Display pokemon on your team         |");
+            Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("|   4 - Display advanced stats on your team  |");
             Console.WriteLine("----------------------------------------------");
         }
 
@@ -116,6 +155,33 @@ namespace PokemonTeamData.UI
             {
                 await DisplayGetPokemonMessagePromptsAsync();
             }
+        }
+
+        public async Task<Team> AddPokemonToTeamAsync(Team team)
+        {
+            Console.WriteLine("Please enter the name of the pokemon you would like to add: ");
+            var pokemonName = Console.ReadLine();
+
+            var pokemonToAdd = await GetPokemon(pokemonName);
+
+            if(pokemonToAdd != null)
+            {
+                team = pokemonService.AddPokemonToTeam(team, pokemonToAdd);
+            }
+            else
+            {
+                Console.WriteLine($"Could not retrieve pokemon {pokemonName}, please ensure it is spelled correctly, pokemon was not added to team");
+            }
+
+            Console.WriteLine("Would you like to add another pokemon? (y/n)");
+            var userChoice = Console.ReadLine();
+
+            if (userChoice.ToLower() == "y")
+            {
+                await AddPokemonToTeamAsync(team);
+            }
+
+            return team;
         }
     }
 }
