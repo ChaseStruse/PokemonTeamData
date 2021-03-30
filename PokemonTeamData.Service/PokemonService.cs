@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using PokemonTeamData.Repository;
 using PokemonTeamData.Repository.Models;
 
 namespace PokemonTeamData.Service
@@ -6,12 +8,16 @@ namespace PokemonTeamData.Service
     public interface IPokemonService
     {
         Uri UriBuilder(string pokemonName);
+        Task<Pokemon> GetPokemon(Uri uri);
     }
 
-    public class PokemonService
+    public class PokemonService : IPokemonService
     {
+        private readonly IApiClient _client;
+
         public PokemonService()
         {
+            _client = new ApiClient();
         }
 
         public Uri UriBuilder(string pokemonName)
@@ -20,9 +26,11 @@ namespace PokemonTeamData.Service
             return uri;
         }
 
-        public Pokemon GetPokemon(Uri uri)
+        public async Task<Pokemon> GetPokemon(Uri uri)
         {
-            throw new NotImplementedException();
+
+            var pokemon = await _client.GetPokemon(uri);
+            return pokemon;
         }
     }
 }

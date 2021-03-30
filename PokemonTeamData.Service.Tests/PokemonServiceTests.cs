@@ -3,12 +3,13 @@ using Xunit;
 using FluentAssertions;
 using System.Collections.Generic;
 using PokemonTeamData.Repository.Models;
+using System.Threading.Tasks;
 
 namespace PokemonTeamData.Service.Tests
 {
     public class PokemonServiceTests
     {
-        private readonly PokemonService _sut;
+        private readonly IPokemonService _sut;
 
         public PokemonServiceTests()
         {
@@ -16,10 +17,10 @@ namespace PokemonTeamData.Service.Tests
         }
 
         [Fact]
-        public void GivenValidPokemonName_GetPokemon_ReturnsCorrectData()
+        public async Task GivenValidPokemonName_GetPokemon_ReturnsCorrectData()
         {
             var uri = _sut.UriBuilder("charmander");
-            var actual = _sut.GetPokemon(uri);
+            var actual = await _sut.GetPokemon(uri);
 
             var expectedAbilities = new List<Ability>()
             {
