@@ -22,5 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PokemonTeamData.Service\PokemonTeamData.Service.csproj" />
+    <ProjectReference Include="..\PokemonTeamData.Repository\PokemonTeamData.Repository.csproj" />
   </ItemGroup>
 </Project>
