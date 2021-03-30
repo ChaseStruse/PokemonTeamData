@@ -7,8 +7,9 @@ namespace PokemonTeamData.UI
 {
     public interface IUserInterface
     {
-        void MainProgramLoop();
+        Task MainProgramLoop();
         Task<Pokemon> GetPokemon(string pokemonName);
+        Task DisplayGetPokemonMessagePromptsAsync();
         void DisplayPokemonInformation(Pokemon pokemon);
         void DisplayMainMenu();
     }
@@ -22,26 +23,24 @@ namespace PokemonTeamData.UI
             pokemonService = new PokemonService();
         }
 
-        public void MainProgramLoop()
+        public async Task MainProgramLoop()
         {
             var userWantsToExitProgram = false;
 
-            DisplayMainMenu();
             while (!userWantsToExitProgram)
             {
+                DisplayMainMenu();
                 var userChoice = Console.ReadLine();
 
                 if(userChoice == "1")
                 {
-                    Console.WriteLine("Please enter the name of the pokemon you would like to see: ");
-                    var pokemonName = Console.ReadLine();
-                    var pokemon = GetPokemon(pokemonName);
-                    DisplayPokemonInformation(pokemon.Result);
+                    await DisplayGetPokemonMessagePromptsAsync();
                 }
                 else if(userChoice == "0")
                 {
                     userWantsToExitProgram = true;
                 }
+          
             }
         }
 
@@ -93,6 +92,28 @@ namespace PokemonTeamData.UI
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("|   1 - View stats of a specific pokemon     |");
             Console.WriteLine("----------------------------------------------");
+        }
+
+        public async Task DisplayGetPokemonMessagePromptsAsync()
+        {
+            Console.WriteLine("Please enter the name of the pokemon you would like to see: ");
+            var pokemonName = Console.ReadLine();
+            var pokemon = await GetPokemon(pokemonName.ToLower());
+            if (pokemon != null)
+            {
+                DisplayPokemonInformation(pokemon);
+            }
+            else
+            {
+                Console.WriteLine($"Could not retrieve pokemon {pokemonName}, please ensure it is spelled correctly");
+            }
+            Console.WriteLine("Would you like to seach for another pokemon? (y/n)");
+            var userChoice = Console.ReadLine();
+
+            if (userChoice.ToLower() == "y")
+            {
+                await DisplayGetPokemonMessagePromptsAsync();
+            }
         }
     }
 }
