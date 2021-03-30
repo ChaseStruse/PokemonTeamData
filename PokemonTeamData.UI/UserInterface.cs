@@ -80,7 +80,6 @@ namespace PokemonTeamData.UI
             }
             catch 
             {
-                Console.WriteLine("Could not retrieve pokemon, please ensure you typed the name in correctly");
                 return null;
             }
         }
@@ -98,7 +97,9 @@ namespace PokemonTeamData.UI
         {
             Console.WriteLine("Please enter the name of the pokemon you would like to see: ");
             var pokemonName = Console.ReadLine();
+
             var pokemon = await GetPokemon(pokemonName.ToLower());
+
             if (pokemon != null)
             {
                 DisplayPokemonInformation(pokemon);
@@ -107,7 +108,8 @@ namespace PokemonTeamData.UI
             {
                 Console.WriteLine($"Could not retrieve pokemon {pokemonName}, please ensure it is spelled correctly");
             }
-            Console.WriteLine("Would you like to seach for another pokemon? (y/n)");
+
+            Console.WriteLine("Would you like to search for another pokemon? (y/n)");
             var userChoice = Console.ReadLine();
 
             if (userChoice.ToLower() == "y")
