@@ -3,8 +3,7 @@ namespace PokemonTeamData.Repository.Models
 {
     public class Statistic
     {
-        public Statistic()
-        {
-        }
+        public string Name { get; set; }
+        public int BaseValue { get; set; }
     }
 }
