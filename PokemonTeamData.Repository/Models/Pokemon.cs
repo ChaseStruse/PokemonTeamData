@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PokemonTeamData.Repository.Enums;
 
 namespace PokemonTeamData.Repository.Models
 {
@@ -10,5 +11,6 @@ namespace PokemonTeamData.Repository.Models
         public List<Ability> Abilities { get; set; }
         public List<Statistic> Stats { get; set; }
         public List<Type> Types { get; set; }
+        public Dictionary<TypeEffectiveness, List<Models.Type>> Effective { get; set; } = new Dictionary<TypeEffectiveness, List<Type>>();
     }
 }
