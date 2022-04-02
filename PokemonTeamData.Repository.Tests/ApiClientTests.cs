@@ -38,9 +38,9 @@ namespace PokemonTeamData.Repository.Tests
                 }
             };
 
-            var expectedTypes = new List<Models.Type>()
+            var expectedTypes = new List<Models.PokemonType>()
             {
-                new Models.Type
+                new Models.PokemonType
                 {
                     Name = "fire",
                     URL = "https://pokeapi.co/api/v2/type/10/"
@@ -80,56 +80,56 @@ namespace PokemonTeamData.Repository.Tests
                     Name = "speed"
                 }
             };
-            var expectedEffectiveness = new Dictionary<TypeEffectiveness, List<Models.Type>>()
+            var expectedEffectiveness = new Dictionary<TypeEffectiveness, List<Models.PokemonType>>()
             {
                 {
                     TypeEffectiveness.SuperEffectiveWhenGettingAttackedByThisType,
-                    new List<Models.Type>()
+                    new List<Models.PokemonType>()
                     {
-                        new Models.Type { Name = "ground", URL = "https://pokeapi.co/api/v2/type/5/" },
-                        new Models.Type { Name = "rock", URL = "https://pokeapi.co/api/v2/type/6/" },
-                        new Models.Type { Name = "water", URL = "https://pokeapi.co/api/v2/type/11/" },
+                        new Models.PokemonType { Name = "ground", URL = "https://pokeapi.co/api/v2/type/5/" },
+                        new Models.PokemonType { Name = "rock", URL = "https://pokeapi.co/api/v2/type/6/" },
+                        new Models.PokemonType { Name = "water", URL = "https://pokeapi.co/api/v2/type/11/" },
                     }
                 },
                 {
                     TypeEffectiveness.SuperEffectiveWhenAttackingThisType,
-                    new List<Models.Type>()
+                    new List<Models.PokemonType>()
                     {
-                        new Models.Type { Name = "bug", URL = "https://pokeapi.co/api/v2/type/7/" },
-                        new Models.Type { Name = "steel", URL = "https://pokeapi.co/api/v2/type/9/" },
-                        new Models.Type { Name = "grass", URL = "https://pokeapi.co/api/v2/type/12/" },
-                        new Models.Type { Name = "ice", URL = "https://pokeapi.co/api/v2/type/15/" },
+                        new Models.PokemonType { Name = "bug", URL = "https://pokeapi.co/api/v2/type/7/" },
+                        new Models.PokemonType { Name = "steel", URL = "https://pokeapi.co/api/v2/type/9/" },
+                        new Models.PokemonType { Name = "grass", URL = "https://pokeapi.co/api/v2/type/12/" },
+                        new Models.PokemonType { Name = "ice", URL = "https://pokeapi.co/api/v2/type/15/" },
                     }
                 },
                 {
                     TypeEffectiveness.EffectiveWhenGettingAttackedByThisType,
-                    new List<Models.Type>()
+                    new List<Models.PokemonType>()
                     {
-                        new Models.Type { Name = "bug", URL = "https://pokeapi.co/api/v2/type/7/" },
-                        new Models.Type { Name = "steel", URL = "https://pokeapi.co/api/v2/type/9/" },                       
-                        new Models.Type { Name = "fire", URL = "https://pokeapi.co/api/v2/type/10/" },
-                        new Models.Type { Name = "grass", URL = "https://pokeapi.co/api/v2/type/12/" },
-                        new Models.Type { Name = "ice", URL = "https://pokeapi.co/api/v2/type/15/" },
-                        new Models.Type { Name = "fairy", URL = "https://pokeapi.co/api/v2/type/18/" },
+                        new Models.PokemonType { Name = "bug", URL = "https://pokeapi.co/api/v2/type/7/" },
+                        new Models.PokemonType { Name = "steel", URL = "https://pokeapi.co/api/v2/type/9/" },                       
+                        new Models.PokemonType { Name = "fire", URL = "https://pokeapi.co/api/v2/type/10/" },
+                        new Models.PokemonType { Name = "grass", URL = "https://pokeapi.co/api/v2/type/12/" },
+                        new Models.PokemonType { Name = "ice", URL = "https://pokeapi.co/api/v2/type/15/" },
+                        new Models.PokemonType { Name = "fairy", URL = "https://pokeapi.co/api/v2/type/18/" },
                     }
                 },
                 {
                     TypeEffectiveness.EffectiveWhenAttackingThisType,
-                    new List<Models.Type>()
+                    new List<Models.PokemonType>()
                     {
-                        new Models.Type { Name = "rock", URL = "https://pokeapi.co/api/v2/type/6/" },
-                        new Models.Type { Name = "fire", URL = "https://pokeapi.co/api/v2/type/10/" },
-                        new Models.Type { Name = "water", URL = "https://pokeapi.co/api/v2/type/11/" },
-                        new Models.Type { Name = "dragon", URL = "https://pokeapi.co/api/v2/type/16/" },
+                        new Models.PokemonType { Name = "rock", URL = "https://pokeapi.co/api/v2/type/6/" },
+                        new Models.PokemonType { Name = "fire", URL = "https://pokeapi.co/api/v2/type/10/" },
+                        new Models.PokemonType { Name = "water", URL = "https://pokeapi.co/api/v2/type/11/" },
+                        new Models.PokemonType { Name = "dragon", URL = "https://pokeapi.co/api/v2/type/16/" },
                     }
                 },
                 {
                     TypeEffectiveness.NoEffectWhenAttackingThisType,
-                    new List<Models.Type>(){}
+                    new List<Models.PokemonType>(){}
                 },
                 {
                     TypeEffectiveness.NoEffectWhenGettingAttackedByThisType,
-                    new List<Models.Type>(){}
+                    new List<Models.PokemonType>(){}
                 },
             };
             var expected = new Pokemon()

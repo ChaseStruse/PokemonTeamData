@@ -92,9 +92,9 @@ namespace PokemonTeamData.Service.Tests
                 }
             };
 
-            var types = new List<Repository.Models.Type>()
+            var types = new List<Repository.Models.PokemonType>()
             {
-                new Repository.Models.Type
+                new Repository.Models.PokemonType
                 {
                     Name = "fire",
                     URL = "https://pokeapi.co/api/v2/type/10/"
@@ -134,56 +134,56 @@ namespace PokemonTeamData.Service.Tests
                     Name = "speed"
                 }
             };
-            var expectedEffectiveness = new Dictionary<TypeEffectiveness, List<Repository.Models.Type>>()
+            var expectedEffectiveness = new Dictionary<TypeEffectiveness, List<Repository.Models.PokemonType>>()
             {
                 {
                     TypeEffectiveness.SuperEffectiveWhenGettingAttackedByThisType,
-                    new List<Repository.Models.Type>()
+                    new List<Repository.Models.PokemonType>()
                     {
-                        new Repository.Models.Type { Name = "ground", URL = "https://pokeapi.co/api/v2/type/5/" },
-                        new Repository.Models.Type { Name = "rock", URL = "https://pokeapi.co/api/v2/type/6/" },
-                        new Repository.Models.Type { Name = "water", URL = "https://pokeapi.co/api/v2/type/11/" },
+                        new Repository.Models.PokemonType { Name = "ground", URL = "https://pokeapi.co/api/v2/type/5/" },
+                        new Repository.Models.PokemonType { Name = "rock", URL = "https://pokeapi.co/api/v2/type/6/" },
+                        new Repository.Models.PokemonType { Name = "water", URL = "https://pokeapi.co/api/v2/type/11/" },
                     }
                 },
                 {
                     TypeEffectiveness.SuperEffectiveWhenAttackingThisType,
-                    new List<Repository.Models.Type>()
+                    new List<Repository.Models.PokemonType>()
                     {
-                        new Repository.Models.Type { Name = "bug", URL = "https://pokeapi.co/api/v2/type/7/" },
-                        new Repository.Models.Type { Name = "steel", URL = "https://pokeapi.co/api/v2/type/9/" },
-                        new Repository.Models.Type { Name = "grass", URL = "https://pokeapi.co/api/v2/type/12/" },
-                        new Repository.Models.Type { Name = "ice", URL = "https://pokeapi.co/api/v2/type/15/" },
+                        new Repository.Models.PokemonType { Name = "bug", URL = "https://pokeapi.co/api/v2/type/7/" },
+                        new Repository.Models.PokemonType { Name = "steel", URL = "https://pokeapi.co/api/v2/type/9/" },
+                        new Repository.Models.PokemonType { Name = "grass", URL = "https://pokeapi.co/api/v2/type/12/" },
+                        new Repository.Models.PokemonType { Name = "ice", URL = "https://pokeapi.co/api/v2/type/15/" },
                     }
                 },
                 {
                     TypeEffectiveness.EffectiveWhenGettingAttackedByThisType,
-                    new List<Repository.Models.Type>()
+                    new List<Repository.Models.PokemonType>()
                     {
-                        new Repository.Models.Type { Name = "bug", URL = "https://pokeapi.co/api/v2/type/7/" },
-                        new Repository.Models.Type { Name = "steel", URL = "https://pokeapi.co/api/v2/type/9/" },
-                        new Repository.Models.Type { Name = "fire", URL = "https://pokeapi.co/api/v2/type/10/" },
-                        new Repository.Models.Type { Name = "grass", URL = "https://pokeapi.co/api/v2/type/12/" },
-                        new Repository.Models.Type { Name = "ice", URL = "https://pokeapi.co/api/v2/type/15/" },
-                        new Repository.Models.Type { Name = "fairy", URL = "https://pokeapi.co/api/v2/type/18/" },
+                        new Repository.Models.PokemonType { Name = "bug", URL = "https://pokeapi.co/api/v2/type/7/" },
+                        new Repository.Models.PokemonType { Name = "steel", URL = "https://pokeapi.co/api/v2/type/9/" },
+                        new Repository.Models.PokemonType { Name = "fire", URL = "https://pokeapi.co/api/v2/type/10/" },
+                        new Repository.Models.PokemonType { Name = "grass", URL = "https://pokeapi.co/api/v2/type/12/" },
+                        new Repository.Models.PokemonType { Name = "ice", URL = "https://pokeapi.co/api/v2/type/15/" },
+                        new Repository.Models.PokemonType { Name = "fairy", URL = "https://pokeapi.co/api/v2/type/18/" },
                     }
                 },
                 {
                     TypeEffectiveness.EffectiveWhenAttackingThisType,
-                    new List<Repository.Models.Type>()
+                    new List<Repository.Models.PokemonType>()
                     {
-                        new Repository.Models.Type { Name = "rock", URL = "https://pokeapi.co/api/v2/type/6/" },
-                        new Repository.Models.Type { Name = "fire", URL = "https://pokeapi.co/api/v2/type/10/" },
-                        new Repository.Models.Type { Name = "water", URL = "https://pokeapi.co/api/v2/type/11/" },
-                        new Repository.Models.Type { Name = "dragon", URL = "https://pokeapi.co/api/v2/type/16/" },
+                        new Repository.Models.PokemonType { Name = "rock", URL = "https://pokeapi.co/api/v2/type/6/" },
+                        new Repository.Models.PokemonType { Name = "fire", URL = "https://pokeapi.co/api/v2/type/10/" },
+                        new Repository.Models.PokemonType { Name = "water", URL = "https://pokeapi.co/api/v2/type/11/" },
+                        new Repository.Models.PokemonType { Name = "dragon", URL = "https://pokeapi.co/api/v2/type/16/" },
                     }
                 },
                 {
                     TypeEffectiveness.NoEffectWhenAttackingThisType,
-                    new List<Repository.Models.Type>(){}
+                    new List<Repository.Models.PokemonType>(){}
                 },
                 {
                     TypeEffectiveness.NoEffectWhenGettingAttackedByThisType,
-                    new List<Repository.Models.Type>(){}
+                    new List<Repository.Models.PokemonType>(){}
                 },
             };
             var charmander = new Pokemon()

@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using PokemonTeamData.Repository.Enums;
 using PokemonTeamData.Repository.Models;
 using PokemonTeamData.Service;
 
@@ -85,41 +86,47 @@ namespace PokemonTeamData.UI
                 Console.WriteLine(pokemonBaseStats.Name);
                 Console.WriteLine(pokemonBaseStats.BaseValue);
             }
+            DisplayPokemonEffectivenessInformation(pokemon);
+
+        }
+
+        public void DisplayPokemonEffectivenessInformation(Pokemon pokemon)
+        {
             Console.WriteLine("----------------------------------------------");
-            Console.WriteLine("Super Effective when attacking these types: ");
-            foreach (var effectivenessStat in pokemon.Effective[TypeEffectiveness.SuperEffectiveWhenAttackingThisType])
+            Console.WriteLine($"{pokemon.Name.ToUpper()} is Super Effective when attacking these types: ");
+            foreach (var pokemonType in pokemon.SuperEffectiveWhenAttacking)
             {
-                Console.WriteLine(effectivenessStat.Name);
+                Console.WriteLine(pokemonType);
             }
             Console.WriteLine("----------------------------------------------");
-            Console.WriteLine("These types are super effective when attacking you: ");
-            foreach (var effectivenessStat in pokemon.Effective[TypeEffectiveness.SuperEffectiveWhenGettingAttackedByThisType])
+            Console.WriteLine($"These types are super effective when attacking { pokemon.Name.ToUpper()}: ");
+            foreach (var pokemonType in pokemon.SuperEffectiveWhenGettingAttacked)
             {
-                Console.WriteLine(effectivenessStat.Name);
+                Console.WriteLine(pokemonType);
             }
             Console.WriteLine("----------------------------------------------");
-            Console.WriteLine("Effective when attacking these types: ");
-            foreach (var effectivenessStat in pokemon.Effective[TypeEffectiveness.EffectiveWhenAttackingThisType])
+            Console.WriteLine($"{ pokemon.Name.ToUpper()} is Effective when attacking these types: ");
+            foreach (var pokemonType in pokemon.EffectiveWhenAttacking)
             {
-                Console.WriteLine(effectivenessStat.Name);
+                Console.WriteLine(pokemonType);
             }
             Console.WriteLine("----------------------------------------------");
-            Console.WriteLine("These types are effective when attacking you: ");
-            foreach (var effectivenessStat in pokemon.Effective[TypeEffectiveness.EffectiveWhenGettingAttackedByThisType])
+            Console.WriteLine($"These types are effective when attacking { pokemon.Name.ToUpper()}: ");
+            foreach (var pokemonType in pokemon.EffectiveWhenGettingAttacked)
             {
-                Console.WriteLine(effectivenessStat.Name);
+                Console.WriteLine(pokemonType);
             }
             Console.WriteLine("----------------------------------------------");
-            Console.WriteLine("You have no effect attacking these types: ");
-            foreach (var effectivenessStat in pokemon.Effective[TypeEffectiveness.NoEffectWhenAttackingThisType])
+            Console.WriteLine($"{ pokemon.Name.ToUpper()} has no effect attacking these types: ");
+            foreach (var pokemonType in pokemon.NoEffectWhenAttacking)
             {
-                Console.WriteLine(effectivenessStat.Name);
+                Console.WriteLine(pokemonType);
             }
             Console.WriteLine("----------------------------------------------");
-            Console.WriteLine("These types have no effect when attacking you: ");
-            foreach (var effectivenessStat in pokemon.Effective[TypeEffectiveness.NoEffectWhenAttackingThisType])
+            Console.WriteLine($"These types have no effect when attacking { pokemon.Name.ToUpper()}: ");
+            foreach (var pokemonType in pokemon.NoEffectWhenGettingAttackedBy)
             {
-                Console.WriteLine(effectivenessStat.Name);
+                Console.WriteLine(pokemonType);
             }
             Console.WriteLine("----------------------------------------------");
         }
