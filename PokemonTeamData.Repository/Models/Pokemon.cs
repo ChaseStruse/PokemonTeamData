@@ -10,7 +10,12 @@ namespace PokemonTeamData.Repository.Models
         public string Name { get; set; }
         public List<Ability> Abilities { get; set; }
         public List<Statistic> Stats { get; set; }
-        public List<Type> Types { get; set; }
-        public Dictionary<TypeEffectiveness, List<Models.Type>> Effective { get; set; } = new Dictionary<TypeEffectiveness, List<Type>>();
+        public List<PokemonType> Types { get; set; }
+        public List<string> SuperEffectiveWhenAttacking { get; set; } = new();
+        public List<string> SuperEffectiveWhenGettingAttacked { get; set; } = new();
+        public List<string> EffectiveWhenAttacking { get; set; } = new();
+        public List<string> EffectiveWhenGettingAttacked { get; set; } = new();
+        public List<string> NoEffectWhenAttacking { get; set; } = new();
+        public List<string> NoEffectWhenGettingAttackedBy { get; set; } = new();
     }
 }
