@@ -80,58 +80,37 @@ namespace PokemonTeamData.Repository.Tests
                     Name = "speed"
                 }
             };
-            var expectedEffectiveness = new Dictionary<TypeEffectiveness, List<Models.PokemonType>>()
+            var expectedSuperEffectiveWhenAttacking = new List<string>()
             {
-                {
-                    TypeEffectiveness.SuperEffectiveWhenGettingAttackedByThisType,
-                    new List<Models.PokemonType>()
-                    {
-                        new Models.PokemonType { Name = "ground", URL = "https://pokeapi.co/api/v2/type/5/" },
-                        new Models.PokemonType { Name = "rock", URL = "https://pokeapi.co/api/v2/type/6/" },
-                        new Models.PokemonType { Name = "water", URL = "https://pokeapi.co/api/v2/type/11/" },
-                    }
-                },
-                {
-                    TypeEffectiveness.SuperEffectiveWhenAttackingThisType,
-                    new List<Models.PokemonType>()
-                    {
-                        new Models.PokemonType { Name = "bug", URL = "https://pokeapi.co/api/v2/type/7/" },
-                        new Models.PokemonType { Name = "steel", URL = "https://pokeapi.co/api/v2/type/9/" },
-                        new Models.PokemonType { Name = "grass", URL = "https://pokeapi.co/api/v2/type/12/" },
-                        new Models.PokemonType { Name = "ice", URL = "https://pokeapi.co/api/v2/type/15/" },
-                    }
-                },
-                {
-                    TypeEffectiveness.EffectiveWhenGettingAttackedByThisType,
-                    new List<Models.PokemonType>()
-                    {
-                        new Models.PokemonType { Name = "bug", URL = "https://pokeapi.co/api/v2/type/7/" },
-                        new Models.PokemonType { Name = "steel", URL = "https://pokeapi.co/api/v2/type/9/" },                       
-                        new Models.PokemonType { Name = "fire", URL = "https://pokeapi.co/api/v2/type/10/" },
-                        new Models.PokemonType { Name = "grass", URL = "https://pokeapi.co/api/v2/type/12/" },
-                        new Models.PokemonType { Name = "ice", URL = "https://pokeapi.co/api/v2/type/15/" },
-                        new Models.PokemonType { Name = "fairy", URL = "https://pokeapi.co/api/v2/type/18/" },
-                    }
-                },
-                {
-                    TypeEffectiveness.EffectiveWhenAttackingThisType,
-                    new List<Models.PokemonType>()
-                    {
-                        new Models.PokemonType { Name = "rock", URL = "https://pokeapi.co/api/v2/type/6/" },
-                        new Models.PokemonType { Name = "fire", URL = "https://pokeapi.co/api/v2/type/10/" },
-                        new Models.PokemonType { Name = "water", URL = "https://pokeapi.co/api/v2/type/11/" },
-                        new Models.PokemonType { Name = "dragon", URL = "https://pokeapi.co/api/v2/type/16/" },
-                    }
-                },
-                {
-                    TypeEffectiveness.NoEffectWhenAttackingThisType,
-                    new List<Models.PokemonType>(){}
-                },
-                {
-                    TypeEffectiveness.NoEffectWhenGettingAttackedByThisType,
-                    new List<Models.PokemonType>(){}
-                },
+                "bug",
+                "steel",
+                "grass",
+                "ice"
             };
+            var expectedSuperEffectiveWhenAttacked = new List<string>()
+            {
+                "ground",
+                "rock",
+                "water"
+            };
+            var expectedEffectiveWhenAttacking = new List<string>()
+            {
+                "rock",
+                "fire",
+                "water",
+                "dragon"
+            };
+            var expectedEffectiveWhenAttacked = new List<string>()
+            {
+                "bug",
+                "steel",
+                "fire",
+                "grass",
+                "ice",
+                "fairy"
+            };
+            var expectedNoEffectWhenAttacking = new List<string>();
+            var expectedNoEffectWhenAttacked = new List<string>();
             var expected = new Pokemon()
             {
                Id = 4,
@@ -139,7 +118,12 @@ namespace PokemonTeamData.Repository.Tests
                Abilities = expectedAbilities,
                Types = expectedTypes,
                Stats = expectedStats,
-               Effective = expectedEffectiveness
+               SuperEffectiveWhenAttacking = expectedSuperEffectiveWhenAttacking,
+               SuperEffectiveWhenGettingAttacked = expectedSuperEffectiveWhenAttacked,
+               EffectiveWhenAttacking = expectedEffectiveWhenAttacking,
+               EffectiveWhenGettingAttacked = expectedEffectiveWhenAttacked,
+               NoEffectWhenAttacking = expectedNoEffectWhenAttacking,
+               NoEffectWhenGettingAttackedBy = expectedNoEffectWhenAttacked
             };
 
             actual.Should().BeEquivalentTo(expected);
