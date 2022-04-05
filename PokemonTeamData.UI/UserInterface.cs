@@ -38,27 +38,37 @@ namespace PokemonTeamData.UI
                 DisplayMainMenu();
                 var userChoice = Console.ReadLine();
 
-                if(userChoice == "1")
-                {
-                    await DisplayGetPokemonMessagePromptsAsync();
-                }
-                else if(userChoice == "2")
-                {
-                    userTeam = await AddPokemonToTeamAsync(userTeam);
-                }
-                else if (userChoice == "3")
-                {
-                    DisplaySimpleTeamInformation(userTeam);
-                }
-                else if (userChoice == "4")
-                {
-                    DisplayAdvancedTeamInformation(userTeam);
-                }
-                else if(userChoice == "0")
-                {
-                    userWantsToExitProgram = true;
-                }
+                if (userChoice == "1") await DisplayGetPokemonMessagePromptsAsync();
+                else if (userChoice == "2") userTeam = await AddPokemonToTeamAsync(userTeam);
+                else if (userChoice == "3") DisplaySimpleTeamInformation(userTeam);
+                else if (userChoice == "4") DisplayAdvancedTeamInformation(userTeam);
+                else if (userChoice == "0") userWantsToExitProgram = true;
           
+            }
+        }
+
+        public async Task DisplayGetPokemonMessagePromptsAsync()
+        {
+            Console.WriteLine("Please enter the name of the pokemon you would like to see: ");
+            var pokemonName = Console.ReadLine();
+
+            var pokemon = await GetPokemon(pokemonName.ToLower());
+
+            if (pokemon != null)
+            {
+                DisplayPokemonInformation(pokemon);
+            }
+            else
+            {
+                Console.WriteLine($"Could not retrieve pokemon {pokemonName}, please ensure it is spelled correctly");
+            }
+
+            Console.WriteLine("Would you like to search for another pokemon? (y/n)");
+            var userChoice = Console.ReadLine();
+
+            if (userChoice.ToLower() == "y")
+            {
+                await DisplayGetPokemonMessagePromptsAsync();
             }
         }
 
@@ -176,30 +186,7 @@ namespace PokemonTeamData.UI
             Console.WriteLine("----------------------------------------------");
         }
 
-        public async Task DisplayGetPokemonMessagePromptsAsync()
-        {
-            Console.WriteLine("Please enter the name of the pokemon you would like to see: ");
-            var pokemonName = Console.ReadLine();
 
-            var pokemon = await GetPokemon(pokemonName.ToLower());
-
-            if (pokemon != null)
-            {
-                DisplayPokemonInformation(pokemon);
-            }
-            else
-            {
-                Console.WriteLine($"Could not retrieve pokemon {pokemonName}, please ensure it is spelled correctly");
-            }
-
-            Console.WriteLine("Would you like to search for another pokemon? (y/n)");
-            var userChoice = Console.ReadLine();
-
-            if (userChoice.ToLower() == "y")
-            {
-                await DisplayGetPokemonMessagePromptsAsync();
-            }
-        }
 
         public async Task<Team> AddPokemonToTeamAsync(Team team)
         {
